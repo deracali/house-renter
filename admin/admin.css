@@ -1,0 +1,57 @@
+.admin-page { min-height: 100vh; background: #f5f7fa; }
+.admin-header { justify-content: space-between; gap: 20px; box-shadow: 0 1px 5px #10182d0b; }
+.admin-back { margin-left: auto; color: #647084; font-size: 11px; font-weight: 600; }
+.admin-main { width: min(1120px, calc(100% - 32px)); min-height: calc(100vh - 66px); margin: 0 auto; padding: 38px 0; }
+.admin-login-card { width: min(420px, 100%); margin: 55px auto; padding: 32px; border: 1px solid var(--border); border-radius: 14px; background: white; box-shadow: 0 10px 35px #10182d0c; }
+.admin-login-card > .brand-mark { width: 36px; height: 36px; font-size: 18px; }
+.admin-login-card h1 { margin: 18px 0 5px; font-size: 22px; }
+.admin-login-card > p { margin: 0 0 22px; color: var(--muted); font-size: 12px; }
+.admin-login-card form { display: grid; gap: 14px; }
+.admin-login-card label { display: grid; gap: 6px; color: #394559; font-size: 11px; font-weight: 600; }
+.admin-login-card input { height: 40px; border: 1px solid var(--border); border-radius: 7px; padding: 0 10px; outline: 0; }
+.admin-login-card input:focus, .admin-reply-form textarea:focus { border-color: var(--green); box-shadow: 0 0 0 3px #079a7018; }
+.admin-login-card .button { width: 100%; }
+.admin-error { min-height: 14px; margin: -5px 0; color: #c43d50; font-size: 10px; }
+.admin-inbox { height: min(720px, calc(100vh - 135px)); min-height: 460px; display: grid; grid-template-columns: 330px minmax(0, 1fr); overflow: hidden; border: 1px solid var(--border); border-radius: 13px; background: white; box-shadow: 0 10px 35px #10182d0c; }
+.admin-sidebar { display: flex; min-height: 0; flex-direction: column; border-right: 1px solid var(--border); }
+.admin-inbox-title { display: flex; align-items: center; justify-content: space-between; padding: 20px; border-bottom: 1px solid var(--border); }
+.admin-inbox-title h1 { margin: 0; font-size: 18px; }
+.admin-inbox-title p { margin: 4px 0 0; color: var(--muted); font-size: 10px; }
+.admin-inbox-title button { width: 34px; height: 34px; border: 1px solid var(--border); border-radius: 8px; color: var(--navy); background: white; font-size: 19px; }
+.admin-conversation-list { overflow-y: auto; }
+.admin-conversation { width: 100%; display: grid; grid-template-columns: 1fr auto; gap: 5px 10px; border: 0; border-bottom: 1px solid #eef0f4; padding: 15px 18px; text-align: left; background: white; }
+.admin-conversation:hover, .admin-conversation.selected { background: #f1f8f5; }
+.admin-conversation strong { overflow: hidden; color: var(--navy); font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }
+.admin-conversation span { overflow: hidden; grid-column: 1 / 2; color: #778194; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
+.admin-conversation time { grid-column: 2; grid-row: 1 / span 2; color: #8992a0; font-size: 9px; }
+.admin-empty-list { padding: 18px; color: var(--muted); font-size: 11px; }
+.admin-thread { min-width: 0; min-height: 0; }
+.admin-thread-empty { display: grid; height: 100%; place-items: center; padding: 30px; color: var(--muted); text-align: center; font-size: 12px; }
+.admin-thread-view { height: 100%; display: grid; grid-template-rows: auto 1fr auto; }
+.admin-thread-header { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 18px 22px; border-bottom: 1px solid var(--border); }
+.admin-thread-header h2 { font-size: 15px; }
+.admin-thread-header p { margin: 4px 0 0; color: var(--muted); font-size: 10px; }
+.admin-online { border-radius: 20px; padding: 6px 9px; color: var(--green); background: #e7f7f0; font-size: 9px; font-weight: 700; }
+.admin-thread-messages { display: flex; overflow-y: auto; flex-direction: column; gap: 12px; padding: 18px 22px; background: #fafbfd; }
+.admin-thread-message { max-width: 78%; align-self: flex-start; border: 1px solid var(--border); border-radius: 10px 10px 10px 3px; padding: 10px 12px; background: white; }
+.admin-thread-message.from-admin { align-self: flex-end; border-color: #cdeee0; border-radius: 10px 10px 3px 10px; background: #e9f8f1; }
+.admin-thread-message strong, .admin-thread-message time { color: #7c8798; font-size: 9px; }
+.admin-thread-message p { margin: 5px 0; color: #283448; font-size: 11px; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; }
+.admin-thread-message time { display: block; text-align: right; }
+.admin-reply-form { display: flex; align-items: end; gap: 10px; padding: 14px; border-top: 1px solid var(--border); }
+.admin-reply-form textarea { flex: 1; resize: vertical; min-height: 44px; max-height: 130px; border: 1px solid var(--border); border-radius: 8px; padding: 10px; outline: 0; font-size: 11px; }
+.admin-reply-form .button { min-height: 40px; }
+.admin-toast { position: fixed; right: 20px; bottom: 20px; transform: translateY(15px); opacity: 0; pointer-events: none; border-radius: 8px; padding: 11px 15px; color: white; background: var(--navy); font-size: 11px; transition: .2s; }
+.admin-toast.visible { transform: translateY(0); opacity: 1; }
+
+@media (max-width: 680px) {
+  .admin-main { width: calc(100% - 20px); padding: 15px 0; }
+  .admin-inbox { height: calc(100vh - 96px); min-height: 0; grid-template-columns: 1fr; grid-template-rows: 42% 58%; }
+  .admin-sidebar { border-right: 0; border-bottom: 1px solid var(--border); }
+  .admin-inbox-title { padding: 12px 14px; }
+  .admin-conversation { padding: 10px 14px; }
+  .admin-thread-header { padding: 12px 14px; }
+  .admin-thread-messages { padding: 12px; }
+  .admin-reply-form { padding: 10px; }
+  .admin-reply-form .button { padding-inline: 10px; }
+}

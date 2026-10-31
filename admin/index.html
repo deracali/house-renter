@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10182d">
+  <title>RentHub Support Admin</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/admin/admin.css">
+  <script src="/admin/admin.js" defer></script>
+</head>
+<body class="admin-page">
+  <header class="site-header admin-header">
+    <a class="brand" href="/" aria-label="RentHub home"><span class="brand-mark">R</span> RentHub <span class="brand-tag">SUPPORT</span></a>
+    <a class="admin-back" href="/">← Back to RentHub</a>
+    <button class="button button-dark button-small" id="adminLogout" type="button" hidden>Sign out</button>
+  </header>
+  <main class="admin-main">
+    <section class="admin-login-card" id="adminLoginView">
+      <span class="brand-mark">R</span>
+      <h1>Support inbox</h1>
+      <p>Sign in with your RentHub support admin credentials.</p>
+      <form id="adminLoginForm">
+        <label>Email<input id="adminEmail" type="email" autocomplete="username" required></label>
+        <label>Password<input id="adminPassword" type="password" autocomplete="current-password" required></label>
+        <p class="admin-error" id="adminLoginError" role="status"></p>
+        <button class="button button-green" type="submit">Sign in</button>
+      </form>
+    </section>
+    <section class="admin-inbox" id="adminInbox" hidden>
+      <div class="admin-sidebar">
+        <div class="admin-inbox-title"><div><h1>Conversations</h1><p id="conversationCount">Loading…</p></div><button id="refreshInbox" type="button" aria-label="Refresh conversations">↻</button></div>
+        <div class="admin-conversation-list" id="adminConversationList"></div>
+      </div>
+      <section class="admin-thread">
+        <div class="admin-thread-empty" id="adminThreadEmpty">Select a conversation to view messages and reply.</div>
+        <div class="admin-thread-view" id="adminThreadView" hidden>
+          <header class="admin-thread-header"><div><h2 id="threadName"></h2><p id="threadEmail"></p></div><span class="admin-online">Support inbox</span></header>
+          <div class="admin-thread-messages" id="adminThreadMessages" aria-live="polite"></div>
+          <form class="admin-reply-form" id="adminReplyForm"><label class="sr-only" for="adminReply">Reply</label><textarea id="adminReply" rows="2" maxlength="1000" placeholder="Write a reply..." required></textarea><button class="button button-green" type="submit">Send reply</button></form>
+        </div>
+      </section>
+    </section>
+  </main>
+  <div class="admin-toast" id="adminToast" role="status"></div>
+</body>
+</html>

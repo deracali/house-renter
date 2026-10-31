@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10182d">
+  <title>RentHub | Find your next home</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="RentHub home"><span class="brand-mark">R</span> RentHub <span class="brand-tag">US</span></a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="#homes">Find Rooms</a>
+      <a href="#homes" data-filter-kind="house">Whole Houses</a>
+      <a href="#landlords">List Your Property <span class="new-tag">NEW</span></a>
+    </nav>
+    <div class="header-actions">
+      <span class="currency-badge">$ USD</span>
+      <button class="text-button" id="authButton" type="button">Sign In</button>
+      <button class="button button-dark button-small" id="headerSignup" type="button">Sign Up</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" type="button">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <div class="eyebrow"><span>150 verified homes</span><span>Across 15 popular cities</span></div>
+          <h1>Find Your Next Home<br>or Room Across<br>the US</h1>
+          <p>Verified landlords, transparent pricing, and same-day tours in 40+ metros.</p>
+          <div class="trust-points"><span>✓ ID-verified hosts</span><span>✓ Secure payments</span><span>✓ 1-hr avg response</span></div>
+        </div>
+        <div class="hero-photo-wrap">
+          <img class="hero-photo" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&amp;fit=crop&amp;w=1100&amp;q=85" alt="Modern home with a landscaped front yard">
+          <div class="review-pill">★ 4.9 <span>32K reviews</span></div>
+          <div class="tour-pill"><span class="tour-icon">↗</span><span><strong>Tour booked</strong><small>Seattle · Today at 2:30 PM</small></span></div>
+        </div>
+      </div>
+      <form class="search-bar" id="searchForm">
+        <label class="search-field"><span>City / ZIP code</span><input id="citySearch" type="search" placeholder="Austin, TX"></label>
+        <label class="search-field"><span>Move-in date</span><input id="moveDate" type="date"></label>
+        <label class="search-field"><span>Lease term</span><select id="leaseTerm"><option value="">Any term</option><option>1–3 months</option><option>3–6 months</option><option>6–12 months</option><option>12+ months</option></select></label>
+        <label class="search-field"><span>Max. monthly rent</span><select id="priceFilter"><option value="12000">Up to $12,000</option><option value="10000">Up to $10,000</option><option value="9000">Up to $9,000</option><option value="8000">Up to $8,000</option></select></label>
+        <label class="search-field search-room"><span>Home type</span><select id="typeFilter"><option value="">Any type</option><option value="house">Whole house</option><option value="apartment">Apartment</option><option value="room">Private room</option></select></label>
+        <button class="button button-green search-submit" type="submit">Search</button>
+      </form>
+    </section>
+
+    <section class="featured-strip" aria-label="Featured partners">
+      <span>AS FEATURED IN</span><strong>ZILLOW PARTNER</strong><strong>TRULIA</strong><strong>REALTOR.COM</strong><strong>APARTMENTS.COM</strong><strong>STREETEASY</strong><span class="compliance">✓ Fair Housing Compliant</span>
+    </section>
+
+    <section class="cities-section section-wrap" id="cities">
+      <div class="section-heading">
+        <div><h2>Browse by popular cities</h2><p>Hand-picked verified rooms &amp; houses near you</p></div>
+        <button class="link-button" id="allCities" type="button">View all cities →</button>
+      </div>
+      <div class="city-grid" id="cityGrid" aria-label="Browse homes by city"></div>
+    </section>
+
+    <section class="homes-section section-wrap" id="homes">
+      <div class="homes-heading">
+        <div><h2>Fresh rooms &amp; houses <span class="result-count" id="resultCount"></span></h2><p class="active-filter" id="activeFilter">Find a place that feels like home.</p></div>
+        <div class="listing-controls">
+          <label class="sr-only" for="sortSelect">Sort listings</label>
+          <select id="sortSelect" class="control-select"><option value="recommended">Sort: Recommended</option><option value="price-low">Price: Low to high</option><option value="price-high">Price: High to low</option><option value="rating">Top rated</option></select>
+          <button class="filter-button" id="filterToggle" type="button">☷ <span>Filters</span></button>
+        </div>
+      </div>
+      <div class="filter-panel" id="filterPanel" hidden>
+        <label>Minimum rent <input type="number" id="minPrice" min="0" placeholder="$0"></label>
+        <label>Maximum rent <input type="number" id="maxPrice" min="0" placeholder="$12,000"></label>
+        <label>Bedrooms <select id="bedroomFilter"><option value="">Any</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option></select></label>
+        <button class="button button-dark button-small" id="applyFilters" type="button">Apply filters</button>
+        <button class="link-button" id="clearFilters" type="button">Clear</button>
+      </div>
+      <div class="property-grid" id="propertyGrid" aria-live="polite"></div>
+      <p class="empty-state" id="emptyState" hidden>No homes match those filters. Try another city or price range.</p>
+      <div class="load-more-wrap"><button class="button button-outline" id="loadMore" type="button">Load more homes</button></div>
+    </section>
+
+    <section class="landlord-cta section-wrap" id="landlords">
+      <div class="landlord-copy"><h2>List your property.<br>Fill it in 7 days.</h2><p>Free listing · Background-checked renters · Guaranteed rent payouts in 40+ cities.</p><div><button class="button button-green" id="listProperty" type="button">List Your Property</button><a class="button button-ghost" href="mailto:hello@renthub.example">Talk to sales</a></div></div>
+      <div class="landlord-stats"><div><strong>$4.2k</strong><span>Avg. monthly payout</span></div><div><strong>7 days</strong><span>Avg. time to fill</span></div><div><strong>98%</strong><span>On-time rent</span></div></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand"><a class="brand brand-light" href="#"><span class="brand-mark">R</span> RentHub</a><p>Trusted rentals across all 50 states.<br>Verified landlords, transparent pricing.</p><span class="footer-compliance">Fair Housing Act Compliant</span></div>
+    <div class="footer-column"><strong>Explore</strong><a href="#homes">Find Rooms</a><a href="#homes" data-filter-kind="house">Whole Houses</a><a href="#homes">Pet-Friendly</a><a href="#homes">Student Housing</a></div>
+    <div class="footer-column"><strong>Landlords</strong><a href="#landlords">List Property</a><a href="#landlords">Verification</a><a href="#landlords">Pricing</a><a href="#landlords">Resources</a></div>
+    <div class="footer-column"><strong>Company</strong><a href="#landlords">About</a><a href="#landlords">Fair Housing</a><a href="#landlords">Safety</a><a href="mailto:hello@renthub.example">Contact</a></div>
+    <form class="newsletter" id="newsletterForm"><label for="newsletterEmail">Get alerts</label><div><input id="newsletterEmail" type="email" placeholder="Email address" required><button type="submit">Join</button></div><small id="newsletterMessage">© 2025 RentHub Inc. · Privacy · Terms</small></form>
+  </footer>
+
+  <dialog class="modal property-modal" id="propertyDialog" aria-labelledby="propertyTitle">
+    <button class="modal-close" data-close="propertyDialog" aria-label="Close details" type="button">×</button>
+    <div id="propertyDetail"></div>
+  </dialog>
+
+  <dialog class="modal photo-viewer" id="photoViewer" aria-label="Property photo viewer">
+    <button class="photo-viewer-close" id="photoViewerClose" aria-label="Close photo viewer" type="button">×</button>
+    <button class="photo-arrow photo-previous" id="photoPrevious" aria-label="Previous photo" type="button">‹</button>
+    <img id="photoViewerImage" src="" alt="">
+    <button class="photo-arrow photo-next" id="photoNext" aria-label="Next photo" type="button">›</button>
+    <p class="photo-counter" id="photoCounter" aria-live="polite"></p>
+  </dialog>
+
+  <dialog class="modal auth-modal" id="authDialog" aria-labelledby="authTitle">
+    <button class="modal-close" data-close="authDialog" aria-label="Close sign in" type="button">×</button>
+    <div class="auth-visual"><span class="brand brand-light"><span class="brand-mark">R</span> RentHub</span><div><span class="eyebrow">A better way to rent</span><h2>Find the place<br>you’ll love coming home to.</h2><p>Explore verified homes, compare prices, and connect with hosts.</p></div><small>Rent with confidence. Find your place.</small></div>
+    <div class="auth-content">
+      <div class="auth-heading"><span class="brand-mark">R</span><strong>RentHub</strong></div>
+      <h2 id="authTitle">Welcome home</h2><p class="auth-subtitle" id="authSubtitle">Sign in to save homes and contact landlords.</p>
+      <div class="auth-tabs"><button type="button" class="auth-tab active" data-auth-mode="signin">Sign In</button><button type="button" class="auth-tab" data-auth-mode="signup">Create Account</button></div>
+      <form id="authForm">
+        <label id="nameField" hidden>Full name<input id="authName" type="text" autocomplete="name" placeholder="Your name"></label>
+        <label>Email address<input id="authEmail" type="email" autocomplete="email" placeholder="you@example.com" required></label>
+        <label>Password<input id="authPassword" type="password" autocomplete="current-password" placeholder="At least 8 characters" minlength="8" maxlength="128" required></label>
+        <p class="auth-message" id="authMessage" role="status"></p>
+        <button class="button button-dark auth-submit" id="authSubmit" type="submit">Sign In</button>
+      </form>
+      <p class="auth-legal">By continuing, you agree to RentHub’s Terms and Privacy Policy.</p>
+    </div>
+  </dialog>
+  <section class="support-widget" id="supportWidget" aria-label="RentHub support chat">
+    <button class="support-launcher" id="supportLauncher" type="button" aria-expanded="false" aria-controls="supportPanel">
+      <span class="support-launcher-icon" aria-hidden="true">▤</span>
+      <span>Chat with support</span>
+      <span class="support-unread" id="supportUnread" hidden>!</span>
+    </button>
+    <div class="support-panel" id="supportPanel" hidden>
+      <header class="support-header">
+        <div class="support-header-brand"><span class="brand-mark">R</span><span><strong>RentHub Support</strong><small>We’re here to help</small></span></div>
+        <button class="support-close" id="supportClose" type="button" aria-label="Close support chat">×</button>
+      </header>
+      <div class="support-intro" id="supportIntro">
+        <strong>How can we help?</strong>
+        <p>Send us a message and our team will get back to you here.</p>
+        <label>Your name <span>(optional)</span><input id="supportName" maxlength="80" autocomplete="name" placeholder="Name"></label>
+        <label>Email <span>(optional)</span><input id="supportEmail" maxlength="254" type="email" autocomplete="email" placeholder="you@example.com"></label>
+        <button class="button button-green support-start" id="supportStart" type="button">Start a conversation</button>
+      </div>
+      <div class="support-conversation" id="supportConversation" hidden>
+        <div class="support-messages" id="supportMessages" aria-live="polite"></div>
+        <form class="support-compose" id="supportForm">
+          <label class="sr-only" for="supportMessage">Your message</label>
+          <textarea id="supportMessage" rows="2" maxlength="1000" placeholder="Write a message..." required></textarea>
+          <button type="submit" aria-label="Send message">➤</button>
+        </form>
+        <small class="support-footnote">Replies appear here. Please don’t share passwords or payment details.</small>
+      </div>
+      <p class="support-error" id="supportError" role="status" hidden></p>
+    </div>
+  </section>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="support.js" defer></script>
+</body>
+</html>
