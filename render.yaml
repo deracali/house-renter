@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: house-renter
+    runtime: node
+    buildCommand: npm ci
+    startCommand: npm start
+    envVars:
+      - key: MONGO_URI
+        sync: false
+      - key: MONGO_DB_NAME
+        value: house-renter
+      - key: RENTHUB_ADMIN_EMAIL
+        sync: false
+      - key: RENTHUB_ADMIN_PASSWORD
+        sync: false
+      - key: NODE_ENV
+        value: production

@@ -23,17 +23,15 @@ The server creates the MongoDB collections and indexes when it starts. The defau
 
 ## Deploy to Render
 
-1. Create a **Web Service** connected to this project.
-2. Set the root directory to the project root.
-3. Set the **Build Command** to `npm ci` and the **Start Command** to `npm start`. Do not enter `npm` by itself as the build command; npm requires a command such as `ci` or `install`.
-4. Add these in Render's environment-variable settings:
+1. Connect the project root to a Render **Web Service**. The repository includes `render.yaml` with the required build and start commands. If creating the service from the dashboard rather than syncing the Blueprint, set **Build Command** to `npm ci` and **Start Command** to `npm start`. Do not enter `npm` by itself as the build command.
+2. Add these in Render's environment-variable settings if they are not already configured:
    - `MONGO_URI`: the rotated MongoDB Atlas URI
    - `MONGO_DB_NAME`: `house-renter` (optional)
    - `RENTHUB_ADMIN_EMAIL`: your admin email
    - `RENTHUB_ADMIN_PASSWORD`: a unique password with at least 12 characters
    - `NODE_ENV`: `production`
-5. In MongoDB Atlas, configure Network Access for Render. Allow only the Render outbound IP ranges when available; allowing `0.0.0.0/0` is broader access and should only be used with a strong database password and least-privilege database user.
-6. Deploy, then test creating a renter account, signing in, saving a favorite, starting a support chat, and replying from `/admin`.
+3. In MongoDB Atlas, configure Network Access for Render. Allow only the Render outbound IP ranges when available; allowing `0.0.0.0/0` is broader access and should only be used with a strong database password and least-privilege database user.
+4. Deploy, then test creating a renter account, signing in, saving a favorite, starting a support chat, and replying from `/admin`.
 
 Use the MongoDB database user with only the permissions this application needs. Never expose `MONGO_URI` in frontend JavaScript or browser environment variables.
 

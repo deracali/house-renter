@@ -24,7 +24,8 @@ const propertyDialog = $("#propertyDialog");
 const authDialog = $("#authDialog");
 
 function imageUrl(id, width = 720) {
-  return `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=80`;
+  const host = id.startsWith("premium_photo-") ? "plus.unsplash.com" : "images.unsplash.com";
+  return `https://${host}/${id}?auto=format&fit=crop&w=${width}&q=80`;
 }
 
 async function apiRequest(url, options = {}) {

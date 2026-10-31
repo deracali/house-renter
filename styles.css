@@ -290,6 +290,10 @@ h2 { margin: 0; }
   .support-widget { right: 14px; bottom: 14px; }
   .support-launcher { min-height: 48px; padding: 0 15px; font-size: 11px; }
   .support-panel { height: min(480px, calc(100vh - 90px)); }
+  .search-field input, .search-field select,
+  .filter-panel input, .filter-panel select,
+  #authForm input, .newsletter input,
+  .support-intro input, .support-compose textarea { font-size: 16px; }
   .detail-content { padding: 12px 14px 18px; }
   .detail-gallery { height: 220px; gap: 5px; }
   .detail-title-row h2 { font-size: 18px; }

@@ -54,4 +54,5 @@
   .admin-thread-messages { padding: 12px; }
   .admin-reply-form { padding: 10px; }
   .admin-reply-form .button { padding-inline: 10px; }
+  .admin-login-card input, .admin-reply-form textarea { font-size: 16px; }
 }
