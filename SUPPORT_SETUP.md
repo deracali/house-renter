@@ -25,7 +25,7 @@ The server creates the MongoDB collections and indexes when it starts. The defau
 
 1. Create a **Web Service** connected to this project.
 2. Set the root directory to the project root.
-3. Set the build command to `npm install` and start command to `npm start`.
+3. Set the **Build Command** to `npm ci` and the **Start Command** to `npm start`. Do not enter `npm` by itself as the build command; npm requires a command such as `ci` or `install`.
 4. Add these in Render's environment-variable settings:
    - `MONGO_URI`: the rotated MongoDB Atlas URI
    - `MONGO_DB_NAME`: `house-renter` (optional)
@@ -36,6 +36,8 @@ The server creates the MongoDB collections and indexes when it starts. The defau
 6. Deploy, then test creating a renter account, signing in, saving a favorite, starting a support chat, and replying from `/admin`.
 
 Use the MongoDB database user with only the permissions this application needs. Never expose `MONGO_URI` in frontend JavaScript or browser environment variables.
+
+After deployment, the site and API are available at [https://house-renter.onrender.com](https://house-renter.onrender.com), with the admin inbox at [https://house-renter.onrender.com/admin](https://house-renter.onrender.com/admin). The frontend uses same-origin relative API paths, so API requests automatically use the current host; no production URL needs to be hardcoded. Keep `localhost` for local development only.
 
 ## Existing browser accounts
 

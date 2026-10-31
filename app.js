@@ -62,7 +62,11 @@ function cityCounts(houses) {
 function renderCities() {
   const counts = cityCounts(state.houses);
   const allCities = Object.keys(counts);
-  const cities = state.showAllCities ? allCities : allCities.slice(0, 6);
+  const featuredCities = allCities.slice(0, 6);
+  if (allCities.includes("San Diego") && !featuredCities.includes("San Diego")) {
+    featuredCities[featuredCities.length - 1] = "San Diego";
+  }
+  const cities = state.showAllCities ? allCities : featuredCities;
   $("#cityGrid").innerHTML = cities.map((city) => {
     const listingCount = counts[city];
     return `<button class="city-card" type="button" data-city="${escapeHtml(city)}" aria-label="Browse ${escapeHtml(city)} homes">
